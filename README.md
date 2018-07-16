@@ -44,3 +44,14 @@ esc  //返回命令状态
 - 学习Vscode java 的入门教程 但是刚接触什么都不会在百度无限制搜索
 最后找到Holle Word！的基础教学
   www.jb51.net
+## day_4
+- 学习Java的数据结构
+枚举
+位集合
+向量
+栈
+字典
+哈希表
+属性
+RUNOOB.com
+
