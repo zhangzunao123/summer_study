@@ -2,7 +2,7 @@
 
 ## day_1
 - git process
-- web
+i- web
 ## day_2
 - linux一些常用指令
 ```
@@ -46,12 +46,12 @@ esc  //返回命令状态
   www.jb51.net
 ## day_4
 - 学习Java的数据结构
-枚举
-位集合
-向量
-栈
-字典
-哈希表
-属性
-RUNOOB.com
+- 枚举
+- 位集合
+- 向量
+- 栈
+- 字典
+- 哈希表
+- 属性
+- RUNOOB.com
 
