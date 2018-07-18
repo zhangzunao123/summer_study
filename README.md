@@ -51,6 +51,7 @@ esc  //返回命令状态
 int compareTo(E o)            比较此枚举与指定对象的顺序
 Class<E> getDeclaringClass()  返回与此枚举常量的枚举类型相对应的 Class 对象
 - 位集合
+Bitset容器是用来存放bit位元素的，每个元素只占1bit位，取值为0或者1，因而比较节约存储空间，bitset提供了多种方法操作位容器，使用前添加<bitset>头文件即可使用
 - 向量
 - 栈
 - 字典
