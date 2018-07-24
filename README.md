@@ -72,3 +72,10 @@ Vector和数组非常类似，但是它可以存储多个对象，并且可以�
 - 属性
 - RUNOOB.com
 
+## python
+python print2 不需要括号
+python printt3 需要括号
+代码块区分：以冒号‘：’结尾
+注意 input（）返回类型是str，要使用时注意转换类型 不然会报错
+
+
