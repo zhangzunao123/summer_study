@@ -113,3 +113,35 @@ python的字串列表有2种取值顺序:
 
 python中把数字分成两种数字 int类和float类  浮点运算
 在python中输入较大的数字会自动转化为长整数
+
+
+- 学会用#来注释
+
+- 学会将字符串储存到变量中
+
+- 学会使用for循环，和print打印结果
+
+
+问题
+计算胰岛素序列中的氨基酸频率
+
+```
+# insulin [Homo sapiens] GI:386828
+insulin = "MALWMRLLPLLALLALWGPDPAAAFVNQHLCGSHLVEALYLVCGERGFFYTPKTRREAEDLQVGQVELGGGPGAGSLQPLALEGSLQKRGIVEQCCTSICSLYQLENYCN"for aa in "ACDEFGHIKLMNPQRSTVWY":
+number = insulin.count(aa)
+print(aa, number)
+```
+ #开头的是注释
+
+第二行insulin = "MAL..."则将蛋白质序列储存在名为insulin的变量中；
+
+for aa in "ACD...":表示遍历二十个氨基酸的循环，需要注意的是for语句末尾的冒号告诉Python，下一行是循环的第一行，而且在Python中用缩进（注意！是四个空格，若是使用编辑器比如Atom，则把Tab Length改成4）来判断代码之间的关系，在前面的示例中，因为后面两行的缩进，所以表示了这两行包括在for循环中；当for循环使用的序列是字符串时，循环内的代码会一个个遍历整个字符串；
+
+number = insulin.count(aa)这一行使用count计算一个字符在一段文本中出现个数；
+
+print(aa, number)将氨基酸和个数打印出来，在Python3中使用的是print函数。
+
+
+在Python字符串中需要有单引号'abc'、双引号"abc"或三引号'''abc'''，"""abc"""进行封闭。
+
+单引号和双引号都可以用来表示一个字符串
