@@ -182,3 +182,25 @@ Python 3的字符串使用Unicode，直接支持多语言。
 list和tuple是Python内置的有序集合，一个可变，一个不可变。
 条件判断从上向下匹配，当满足条件时执行对应的块内语句，后续的elif和else都不再执行
 调用Python的函数，需要根据函数定义，传入正确的参数。如果函数调用出错，一定要学会看错误信息，所以英文很重要
+通过python顺序修改文件名字
+```
+#coding:utf8
+import os;#用OS库
+
+def rename():
+    i=0
+    path="E:\study"
+    filelist=os.listdir(path)
+    for files in filelist:
+        i=i+1
+        Olddir=os.path.join(path,files);
+        if os.path.isdir(Olddir):
+            continue;
+        filename=os.path.splitext(files)[0];#原来的文件名字
+        filetype=os.path.splitext(files)[1];#原来的文件扩展名
+        Newdir=os.path.join(path,"%02d"%i+".txt");#新的名字加扩展名
+        os.rename(Olddir,Newdir)
+
+if __name__ == '__main__':
+    rename()
+```
