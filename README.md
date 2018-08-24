@@ -216,3 +216,5 @@ Python对匿名函数的支持有限，只有一些简单的情况下可以使�
 在面向对象（OOP）的设计模式中，decorator被称为装饰模式。OOP的装饰模式需要通过继承和组合来实现，而Python除了能支持OOP的decorator外，直接从语法层次支持decorator。Python的decorator可以用函数实现，也可以用类实现。
 
 decorator可以增强函数的功能，定义起来虽然有点复杂，但使用起来非常灵活和方便
+Enum可以把一组相关常量定义在一个class中，且class不可变，而且成员可以直接比较。
+
