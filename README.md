@@ -229,3 +229,35 @@ Enum可以把一组相关常量定义在一个class中，且class不可变，而
 无论多么复杂的Web应用程序，入口都是一个WSGI处理函数。HTTP请求的所有输入信息都可以通过environ获得，HTTP响应的输出都可以通过start_response()加上函数返回值作为Body
 
 复杂的Web应用程序，光靠一个WSGI函数来处理还是太底层了，我们需要在WSGI之上再抽象出Web框架，进一步简化Web开发
+1-2  tornado框架简介
+                                        1.2 Tornado 框架简介
+    Tornado框架
+http://www.tornadoweb.org/en/stable/
+使用Python编写的网络框架和高性能的异部网络库
+适用于大量连接 长轮询 WebSockets应用 
+优势：
+微框架  高性能
+异部支持
+缺点：
+轮子少  不像Django  Flask等框架有大量插件支持
+缺少最佳实践，使用公司不多，学习资料少
+构建微服务
+不适合复杂的CMS（内容管理系统）应用
+适合构建网站或者APP后端微服务
+1-3 Tornado学习资料
+                                          1.3 Tornado 学习资料
+文档和书籍
+官方文档https://www.tornadoweb.org/en/stable/
+https://github.com/tornadoweb/tornado
+《introduction to Tronado》
+2-1 tornado安装
+pip 安装 Tornado
+可以通过源码或者 pip安装
+pip install tornado
+Python解释器里 ：import tornado; tornado.version
+                                          3.1Tornado web框架
+Tornado web主要模块
+tornado.web APPlication和RequestHandler类处理http请求
+tornado.template模板渲染
+tornado.routing处理路由
+
