@@ -267,3 +267,115 @@ tornado.routing处理路由
 
 使用Python的好处就是，我们不用当心阶乘的计算结果会溢出，Python的整数可以无限大。
 
+                                      tornado.web：tornado的基础web框架
+
+RequestHandler：封装对请求处理的所有信息和处理方法
+get/post/..：封装对应的请求方式
+write()：封装响应信息，写响应信息的一个方法
+current()返回当前线程的IOLoop实例对象
+start()启动IOLoop实力对象的IO循环，开启监听
+
+httpserver底层处理
+
+httpserver监听端口
+tornado.httpserver.HTTPServer(app)
+httpserver.listen(port)
+
+httpserver实现多进程操作
+tornado.httpserver.HTTPServer(app)
+httpserver.bind(port)
+httpserver.start(0/None/<0/num)
+
+                                                 options配置
+
+全局配置
+
+tornado.options.define(
+    name, default, type, multiple, help
+)
+
+命令行参数转换
+tornado.options.parse_command_line()
+
+配置文件
+
+#即在当前py文件目录创建config文件，并在py代码中加入以下代码，
+tornado.options.parse_config_file("./config")
+配置模块：跟配置文件类似
+
+                                                application配置
+程序调试之debug配置
+
+#自动重启+取消缓存模板+取消缓存静态文件+提供追踪信息
+tornado.web.Application([(..)], debug=True)
+
+注：开发之初可以设置debug=True方便调试，开发完毕改为False.
+
+路由信息初始化参数配置
+
+tonado.web.Application([(r””, Handler, {k:v})])
+def initialize(self, k)
+
+路由名称设置及反解析
+
+#名称设置
+tornado.web.Application([
+    url(r””, handler, {k,v}, name=“”)
+])
+
+#反解析操作
+reverse_url(name)
+
+
+实例
+
+
+# -*- coding:utf-8 -*-
+
+from tornado.web import Application, RequestHandler, url
+from tornado.ioloop import IOLoop
+from tornado.httpserver import HTTPServer
+
+
+class IndexHandler(RequestHandler):
+
+    def get(self):
+        self.write("<a href='"+self.reverse_url("login")+"'>用户登录</a>")
+
+
+class RegistHandler(RequestHandler):
+    def initialize(self, title):
+        self.title = title
+
+    def get(self):
+        self.write("注册业务处理:" + str(self.title))
+
+
+class LoginHandler(RequestHandler):
+    def get(self):
+        self.write("用户登录页面展示")
+
+    def post(self):
+        self.write("用户登录功能处理")
+
+
+if __name__ == "__main__":
+    app = Application(
+        [
+            (r"/", IndexHandler),
+            (r"/regist", RegistHandler, {"title": "会员注册"}),
+            url(r"/login", LoginHandler, name="login"),
+        ]
+    )
+
+    http_server = HTTPServer(app)
+    http_server.listen(8000)
+
+    IOLoop.current().start()
+--------------------- 
+作者：周小董 
+来源：CSDN 
+原文：https://blog.csdn.net/xc_zhou/article/details/80637714 
+版权声明：本文为博主原创文章，转载请附上博文链接！
+
+
