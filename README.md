@@ -373,42 +373,4 @@ if __name__ == "__main__":
      IOLoop.current().start()
 
 
-tronado中使用mysql在数据库中插入数据
 
-
-import tornado.web
-import tornado.ioloop
-import pymysql
-
-db = pymysql.Connection(host='localhost',user='root',password='mysql',
-                   database='aaa',charset='utf8',port=3306)
-class IndexHandler(tornado.web.RequestHandler):
-    def get(self):
-        user_name = self.get_query_argument('name')
-        user_age = int(self.get_query_argument('age'))
-
-        cur = db.cursor()
-
-        sql = 'insert into xxx(name,age) VALUE (%s,%s)'
-        try:
-            cur.execute(sql,[user_name,user_age])
-        except Exception as e:
-            return self.write('数据库插入失败')
-
-        db.commit()
-        self.write('数据插入成功\n')
-
-        self.write(user_name)
-        self.write(str(user_age))
-
-
-if __name__ == '__main__':
-    app = tornado.web.Application([
-        (r'/',IndexHandler)
-
-
-    ],debug=True)
-
-
-    app.listen(8888)
-    tornado.ioloop.IOLoop.current().start()
