@@ -374,3 +374,90 @@ if __name__ == "__main__":
 
 
 
+
+
+
+
+
+
+
+
+
+
+解析tornado查询参数：
+
+
+self.request.query_arguments
+
+self.get_query_argument[s](参数名称)
+
+解析tornado的post参数：
+
+
+
+self.request.body_arguments
+
+self.get_body_argument[s](参数名称)
+
+get,post解析参数都可：
+
+
+self.get_argument[s](参数名称)
+
+原始的post参数：
+
+
+
+post_data = self.request.body.decode('utf-8')
+
+headers参数：self.request.headers，对象(字典对象)
+
+
+
+
+
+
+<第一次访问网站时采用get方法，之后由于在html中采用form表单且方法使用的post，所以后来的传递数据全用post方法>
+
+浏览器打开localhost:8888的时候，发出get请求，请求根目录"/"，根据tornado.web.Application中参数列表中元组对(r'/',MainHandler)，于是找到MainHandler类，这个类继承了tornado.web.RequestHandler类，但是TA里面没有定义get和post方法（具体可以看源码），所以在MainHandler类中定义。由于我只在用户第一次访问网站时处理get方法，所以就是render a.html 就可以了。之后传递数据全用post方法，并把网页上输入的数据存放到数据库中
+
+
+
+
+get和post使用方法
+
+
+import torndb  
+import tornado.web  
+import tornado.ioloop  
+from tornado.options import define,options,parse_command_line  
+  
+define('port',default=8888,help='run on the port',type=int)  
+database=torndb.Connection('localhost','talk',user='root',password='ll')  
+l=[]  
+class MainHandler(tornado.web.RequestHandler):  
+    def get(self):  
+        self.render('a.html',title='haha',items=l)  
+    def post(self):  
+        count=1  
+        print(self.request.remote_ip)  
+        talk=self.get_argument('talk')  
+        talk=str(talk)  
+        database.execute('insert into chatting(id,content) values(%d,"%s")'%(count,talk))  
+        l.append(talk)  
+        self.render('a.html',title='haha',items=l)  
+def main():  
+    parse_command_line()  
+    app=tornado.web.Application(  
+            [  
+                (r'/',MainHandler),  
+                ],  
+            )  
+  
+    app.listen(options.port)  
+    tornado.ioloop.IOLoop.instance().start()  
+      
+if __name__=='__main__':  
+    main()
+
+
